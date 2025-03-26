@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Task Explanation - Contiguous Memory Allocator</title>
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <!-- AOS Animation CSS -->
+  <link href="https://unpkg.com/aos@next/dist/aos.css" rel="stylesheet" />
+  <!-- Bootstrap Icons -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+  <!-- Google Fonts (Optional) -->
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+  <!-- Custom CSS -->
+   <link rel="stylesheet" href="./assets/CSS/style.css">
+</head>
+<body data-bs-spy="scroll" data-bs-target="#navbarScrollspy" data-bs-offset="100">
+  <div class="soonBannerContainer dark-bg">
+    <div class="soonBanner">
+      <div class="soonBannerText">
+        This is Meta Version. Please check back later for updates.⚡
+      </div>
+      <div class="soonBannerText">
+        This is Meta Version. Please check back later for updates.⚡
+      </div>
+    </div>
+  </div>
+  <!-- Navbar (Scrollspy) -->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top" id="navbarScrollspy">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#overview">Memory <span class="brand">Allocator</span></a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarScrollspyMenu" aria-controls="navbarScrollspyMenu" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarScrollspyMenu">
+        <ul class="navbar-nav ms-auto my-2 my-lg-0">
+          <li class="nav-item">
+            <a class="nav-link active" href="#overview">Overview</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#features">Key Features</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#insights">Educational Insights</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#extensions">Extensions</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#readme">README Overview</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Parallax Header -->
+  <header id="topHeader">
+    <video autoplay muted loop>
+      <source src="./assets/img/3141208-uhd_3840_2160_25fps.mp4" type="video/mp4">
+      Your browser does not support the video tag.
+    </video>
+    <div class="header-overlay"></div>
+    <div class="header-content">
+      <h1>Contiguous Memory Allocator</h1>
+      <p>Interactive Simulation &amp; Educational Tool</p>
+    </div>
+  </header>
+
+  <!-- Main Content Container -->
+  <div class="content-container " id="overview">
+    <h2 class="mb-4">Task Explanation & Project Overview</h2>
+    <p>
+      Welcome to the <strong>Contiguous Memory Allocator</strong>—an interactive simulation that brings memory management to life! Whether you're a student, developer, or simply curious, this tool shows how operating systems allocate, release, and compact memory.
+    </p>
+
+    <!-- Vertical Timeline -->
+    <h4 id="features" class="mt-5 mb-3">Key Features Timeline</h4>
+    <div class="timeline" data-aos="fade-up">
+      <div class="timeline-item" data-aos="fade-right">
+        <h5>Memory Initialization</h5>
+        <p>Specify a memory size (in KB) to create a single free block dynamically.</p>
+      </div>
+      <div class="timeline-item" data-aos="fade-right" data-aos-delay="100">
+        <h5>Allocation Strategies</h5>
+        <p>Choose between First Fit, Next Fit, Best Fit, or Worst Fit for allocating memory blocks.</p>
+      </div>
+      <div class="timeline-item" data-aos="fade-right" data-aos-delay="200">
+        <h5>Dynamic Management</h5>
+        <p>Release, compact, and edit allocated blocks in real time, merging free blocks automatically.</p>
+      </div>
+      <div class="timeline-item" data-aos="fade-right" data-aos-delay="300">
+        <h5>Interactive Reporting</h5>
+        <p>Check memory usage and fragmentation metrics, with live status updates.</p>
+      </div>
+      <div class="timeline-item" data-aos="fade-right" data-aos-delay="400">
+        <h5>Dark & Responsive UI</h5>
+        <p>Enjoy a sleek dark theme that adapts beautifully on mobile, with smooth animations on scroll.</p>
+      </div>
+    </div>
+
+    <!-- Accordion for Additional Details -->
+    <h4 id="insights" class="mt-5 mb-3">Educational Insights</h4>
+    <div class="accordion" id="accordionInsights" data-aos="fade-up">
+      <div class="accordion-item">
+        <h2 class="accordion-header" id="headingOne">
+          <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+            Understanding Memory Allocation
+          </button>
+        </h2>
+        <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionInsights">
+          <div class="accordion-body">
+            <p>
+              Contiguous memory allocation loads each process into a single block. While straightforward, it can cause:
+            </p>
+            <ul>
+              <li><strong>External Fragmentation:</strong> Free memory is broken into small chunks.</li>
+              <li><strong>Internal Fragmentation:</strong> Allocated blocks may be larger than needed.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="accordion-item">
+        <h2 class="accordion-header" id="headingTwo">
+          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+            How the Simulator Works
+          </button>
+        </h2>
+        <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionInsights">
+          <div class="accordion-body">
+            <ul>
+              <li>Initialize memory by specifying total size (in KB).</li>
+              <li>Select an allocation strategy (First Fit, Next Fit, Best Fit, or Worst Fit).</li>
+              <li>Release and compact memory to reduce fragmentation.</li>
+              <li>Edit allocated blocks via a popup modal for on-the-fly adjustments.</li>
+              <li>View live reports of memory usage and fragmentation metrics.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Additional Extensions Section -->
+    <h4 id="extensions" class="mt-5 mb-3">Additional Extensions</h4>
+    <div class="accordion" id="accordionExtensions" data-aos="fade-up">
+      <div class="accordion-item">
+        <h2 class="accordion-header" id="headingThree">
+          <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="true" aria-controls="collapseThree">
+            Future Enhancements
+          </button>
+        </h2>
+        <div id="collapseThree" class="accordion-collapse collapse show" aria-labelledby="headingThree" data-bs-parent="#accordionExtensions">
+          <div class="accordion-body">
+            <ul>
+              <li>In-depth fragmentation analysis with graphical visualizations.</li>
+              <li>Advanced algorithms like Buddy System or hybrid paging/segmentation.</li>
+              <li>Performance overhead simulations (e.g., compaction delays).</li>
+              <li>Historical event logs with exportable data.</li>
+              <li>Interactive tutorials and more advanced tooltips.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- README Content Overview -->
+    <h4 id="readme" class="mt-5 mb-3">README Content Overview</h4>
+    <div class="accordion" id="accordionReadme" data-aos="fade-up">
+      <div class="accordion-item">
+        <h2 class="accordion-header" id="headingFour">
+          <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFour" aria-expanded="true" aria-controls="collapseFour">
+            Project Purpose & Design Rationale
+          </button>
+        </h2>
+        <div id="collapseFour" class="accordion-collapse collapse show" aria-labelledby="headingFour" data-bs-parent="#accordionReadme">
+          <div class="accordion-body">
+            <ul>
+              <li><strong>Purpose:</strong> Provide an interactive tool for exploring contiguous memory allocation and its challenges.</li>
+              <li><strong>Design:</strong> Multiple allocation strategies, dynamic splitting/merging, editing, and a robust reporting system.</li>
+              <li><strong>Usage:</strong> Initialize memory, allocate/release blocks, compact them, and track memory usage in real time.</li>
+              <li><strong>Future Work:</strong> Introduce advanced methods, performance simulations, and event logging.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Back Button -->
+    <div class="mt-4 text-center">
+      <a href="index.html" class="button">Go To Life Simulator 🚀</a>
+    </div>
+  </div>
+
+<!-- Go to Top Button -->
+  <button id="goTopBtn" onclick="scrollToTop()" data-bs-toggle="tooltip" title="Back to top">
+    <i class="bi bi-arrow-up"></i>
+  </button>
+
+
+  <!-- Bootstrap JS Bundle -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <!-- AOS JS -->
+  <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+  <!-- Custom JS -->
+   <script src="./assets/JS/script.js"></script>
+</body>
+</html>

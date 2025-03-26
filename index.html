@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Dynamic Memory Allocator (Simulator)</title>
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <!-- AOS Animation CSS -->
+  <link href="https://unpkg.com/aos@next/dist/aos.css" rel="stylesheet" />
+  <!-- Bootstrap Icons -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+  <!-- Google Fonts (Optional) -->
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="./assets/CSS/style.css">
+</head>
+<body>
+   <div class="soonBannerContainer" >
+    <div class="soonBanner">
+      <div class="soonBannerText">
+        This is Meta Version. Please check back later for updates.⚡
+      </div>
+      <div class="soonBannerText">
+        This is Meta Version. Please check back later for updates.⚡
+      </div>
+    </div>
+  </div>
+  <div class="container mt-5">
+    
+    <!-- Top Bar -->
+    <div class="top-bar">
+      <h2>Dynamic Memory Allocator</h2>
+      <div class="d-flex gap-2">
+        <a href="task.html" class="btn btn-info" data-bs-toggle="tooltip" title="View task explanation">Task Explanation</a>
+        <button class="btn btn-danger" onclick="resetAll()" data-bs-toggle="tooltip" title="Reset the simulation">Reset</button>
+      </div>
+    </div>
+    
+    <!-- Initialization Card -->
+    <div class="card mb-3" id="initCard">
+      <div class="card-body">
+        <h5 class="card-title">Initialize Memory</h5>
+        <div class="row g-2 align-items-center">
+          <div class="col-12 col-sm-auto">
+            <label for="initSize" class="col-form-label">Memory Size (KB)</label>
+          </div>
+          <div class="col-12 col-sm-auto">
+            <input type="number" id="initSize" class="form-control" placeholder="e.g., 500" min="1" />
+          </div>
+          <div class="col-12 col-sm-auto">
+            <button class="btn btn-primary w-100" onclick="initializeMemory()" id="initBtn" data-bs-toggle="tooltip" title="Initialize memory with given size">Initialize</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Allocation Form -->
+    <div id="allocationSection" class="card mb-3" style="display: none;">
+      <div class="card-body">
+        <h5 class="card-title">Allocate Memory</h5>
+        <div class="row g-2">
+          <div class="col-12 col-sm-4">
+            <input type="text" id="processName" class="form-control" placeholder="Process Name" maxlength="10" />
+          </div>
+          <div class="col-12 col-sm-3">
+            <input type="number" id="processSize" class="form-control" placeholder="Size (KB)" min="1" />
+          </div>
+          <div class="col-12 col-sm-3">
+            <select id="strategy" class="form-select">
+              <option value="first">First Fit</option>
+              <option value="next">Next Fit</option>
+              <option value="best">Best Fit</option>
+              <option value="worst">Worst Fit</option>
+            </select>
+          </div>
+          <div class="col-12 col-sm-2">
+            <button class="btn btn-success w-100" onclick="allocate()" data-bs-toggle="tooltip" title="Allocate memory using selected strategy">Allocate</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Actions: Release, Compact & Report -->
+    <div id="actionSection" class="card mb-3" style="display: none;">
+      <div class="card-body">
+        <h5 class="card-title">Actions</h5>
+        <div class="row g-2">
+          <div class="col-12 col-sm-4">
+            <input type="text" id="releaseProcess" class="form-control" placeholder="Process to Release" maxlength="10" />
+          </div>
+          <div class="col-12 col-sm-2">
+            <button class="btn btn-warning w-100" onclick="releaseMemory()" data-bs-toggle="tooltip" title="Release memory for process">Release</button>
+          </div>
+          <div class="col-12 col-sm-2">
+            <button class="btn btn-dark w-100" onclick="compactMemory()" data-bs-toggle="tooltip" title="Compact memory to merge free blocks">Compact</button>
+          </div>
+          <div class="col-12 col-sm-4">
+            <button class="btn btn-secondary w-100" onclick="showReport()" data-bs-toggle="tooltip" title="Show memory usage report">Memory Report</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Memory Stack Display -->
+    <div class="card ">
+      <div class="card-header memory-title">Memory Stack</div>
+      <div class="memory-container" id="memoryDisplay"></div>
+    </div>
+  </div>
+
+  <!-- Toast Container -->
+  <div class="toast-container"></div>
+
+  <!-- Edit Modal -->
+  <div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="editModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title text-white" id="editModalLabel">Edit Allocated Block</h5>
+          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body" style="color: var(--secondary-text);">
+          <form id="editForm">
+            <div class="mb-3">
+              <label for="editProcessName" class="form-label">Process Name</label>
+              <input type="text" class="form-control" id="editProcessName" required maxlength="10">
+            </div>
+            <div class="mb-3">
+              <label for="editProcessSize" class="form-label">Process Size (KB)</label>
+              <input type="number" class="form-control" id="editProcessSize" required min="1">
+            </div>
+            <div id="editError" class="text-danger"></div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+          <button type="button" class="btn btn-primary" onclick="saveEdit()">Save Changes</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Memory Report Modal -->
+  <div class="modal fade" id="reportModal" tabindex="-1" aria-labelledby="reportModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title text-white" id="reportModalLabel">Memory Report</h5>
+          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body" id="reportBody" style="color: var(--secondary-text);">
+          <!-- Report details will be inserted here -->
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Go to Top Button -->
+  <button id="goTopBtn" onclick="scrollToTop()" data-bs-toggle="tooltip" title="Back to top">
+    <i class="bi bi-arrow-up"></i>
+  </button>
+
+  <!-- Include Bootstrap JS Bundle (with Popper) and AOS JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+  <!-- Custom JS -->
+  <script src="./assets/JS/script.js"></script>
+</body>
+</html>
