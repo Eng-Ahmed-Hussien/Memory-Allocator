@@ -119,7 +119,7 @@ This project demonstrates how an **operating system** might manage memory contig
 
 You can check our complete project code repository for the Contiguous Memory Allocator below:
 
-[**You Can Check our Contiguous Memory Allocator From here**]([https://github.com/yourusername/ContiguousMemoryAllocator](https://github.com/Eng-Ahmed-Hussien/Adv_OS_Task1))
+[**You Can Check our Contiguous Memory Allocator From here**]((https://github.com/Eng-Ahmed-Hussien/Adv_OS_Task1))
 
 ### **8. Conclusion**
 
