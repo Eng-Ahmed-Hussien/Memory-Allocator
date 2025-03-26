@@ -6,6 +6,10 @@
   --accent-hover: #00897b;
   --text-color: #f0f0f0;
   --secondary-text: #cfcfcf;
+  /* success: '#B2DFDB',  
+    danger: '#F06292',   
+    warning: '#FFF176',  
+    info: '#90CAF9'  */
 }
 
 
@@ -134,7 +138,6 @@ header .header-content {
   text-align: center;
   font-weight: bold;
   color: var(--accent-color);
-  margin-bottom: 10px;
 }
 .memory-container {
   border: 2px solid #343a40;
@@ -314,7 +317,9 @@ button.btn-secondary:hover {
 p, li {
   color: var(--secondary-text);
 }
-
+.main-color{
+  color: var(--accent-color);
+}
 /* Button Style from README */
 .button {
   display: inline-block;

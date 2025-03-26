@@ -125,10 +125,10 @@
       </div>
     </div>
 
-    <!-- Memory Stack Display -->
-    <div class="card ">
-      <div class="card-header memory-title">Memory Stack</div>
-      <div class="memory-container" id="memoryDisplay"></div>
+    <!-- Main Memory Display -->
+    <div class="card mb-5">
+      <h3 class="card-header memory-title">Main Memory </>
+      <div class="memory-container mt-3" id="memoryDisplay"></div>
     </div>
   </div>
 
@@ -138,7 +138,7 @@
   <!-- Edit Modal -->
   <div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="editModalLabel" aria-hidden="true">
     <div class="modal-dialog">
-      <div class="modal-content">
+      <div class="modal-content" style="background-color: var(--dark-card);">
         <div class="modal-header">
           <h5 class="modal-title text-white" id="editModalLabel">Edit Allocated Block</h5>
           <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
@@ -146,11 +146,11 @@
         <div class="modal-body" style="color: var(--secondary-text);">
           <form id="editForm">
             <div class="mb-3">
-              <label for="editProcessName" class="form-label">Process Name</label>
+              <label for="editProcessName" class="form-label main-color">Process Name</label>
               <input type="text" class="form-control" id="editProcessName" required maxlength="10">
             </div>
             <div class="mb-3">
-              <label for="editProcessSize" class="form-label">Process Size (KB)</label>
+              <label for="editProcessSize" class="form-label main-color">Process Size (KB)</label>
               <input type="number" class="form-control" id="editProcessSize" required min="1">
             </div>
             <div id="editError" class="text-danger"></div>
@@ -167,7 +167,7 @@
   <!-- Memory Report Modal -->
   <div class="modal fade" id="reportModal" tabindex="-1" aria-labelledby="reportModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">
-      <div class="modal-content">
+      <div class="modal-content" style="background-color: var(--dark-card);">
         <div class="modal-header">
           <h5 class="modal-title text-white" id="reportModalLabel">Memory Report</h5>
           <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
